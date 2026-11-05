@@ -11,8 +11,8 @@ public class ReportRepository {
     this.jdbcTemplate = jdbcTemplate;
   }
 
-  public int count(ReportQuery query) { // Step 22/0
-    jdbcTemplate.queryForObject(query.getSql(), Integer.class); // Inspection: java-basic-sql-injection, taint.SQLi; Step 23/0; Step 25/0
+  public int count(ReportQuery query) {
+    jdbcTemplate.queryForObject(query.getSql(), Integer.class);
     return 0;
   }
 }

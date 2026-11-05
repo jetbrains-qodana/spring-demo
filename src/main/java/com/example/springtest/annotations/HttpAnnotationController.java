@@ -34,119 +34,103 @@ import java.io.IOException;
 public class HttpAnnotationController {
   @RequestMapping("/request-mapping")
   public String requestMapping(
-    @RequestParam String command // Step 1/2
+    @RequestParam String command
   ) throws IOException {
-    // SECURITY SINK: Starting an operating-system process with request data permits command injection.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/2
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   public String requestMappingWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: No Spring annotation exposes this method or obtains its argument from an HTTP request.
     Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   @GetMapping("/get-mapping")
   public String getMapping(
-    @RequestParam String command // Step 1/3
+    @RequestParam String command
   ) throws IOException {
-    // SECURITY SINK: The query parameter is controlled by the caller and becomes a process command.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/3
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   public String getMappingWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: This duplicate body has no framework entry point and therefore no request source.
     Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   @PostMapping("/post-mapping")
   public String postMapping(
-    @RequestBody CommandPayload input // Step 1/4
+    @RequestBody CommandPayload input
   ) throws IOException {
-    // SECURITY SINK: Spring deserializes attacker-supplied JSON into input.command before this call.
-    Runtime.getRuntime().exec(input.getCommand()); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/4; Step 4/4
+    Runtime.getRuntime().exec(input.getCommand());
     return "command submitted";
   }
 
   public String postMappingWithoutAnnotations(
     PlainCommandPayload input
   ) throws IOException {
-    // CONTROL: The plain value object is supplied only by normal Java callers, not by Spring MVC.
     Runtime.getRuntime().exec(input.getCommand());
     return "command submitted";
   }
 
   @PutMapping("/put-mapping")
   public String putMapping(
-    @RequestHeader("X-Command") String command // Step 1/5
+    @RequestHeader("X-Command") String command
   ) throws IOException {
-    // SECURITY SINK: Any HTTP client can set this header and select the process command.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/5
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   public String putMappingWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: The identical process call is not tainted because the method is not an HTTP handler.
     Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   @PatchMapping("/patch-mapping")
   public String patchMapping(
-    @CookieValue("command") String command // Step 1/6
+    @CookieValue("command") String command
   ) throws IOException {
-    // SECURITY SINK: Cookies are client-controlled request data and must not become process commands.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/6
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   public String patchMappingWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: Without Spring annotations, command is merely an ordinary Java argument.
     Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   @DeleteMapping("/delete-mapping/{command}")
   public String deleteMapping(
-    @PathVariable String command // Step 1/7
+    @PathVariable String command
   ) throws IOException {
-    // SECURITY SINK: The caller chooses the route segment that is passed to the operating system.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/7
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   public String deleteMappingWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: No router calls this method, even though its Java body intentionally matches the handler.
     Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 
   @GetMapping("/model-attribute")
   public String modelAttribute(
-    @Valid @ModelAttribute("input") CommandPayload input // Step 1/8
+    @Valid @ModelAttribute("input") CommandPayload input
   ) throws IOException {
-    // SOURCE: Spring populates the model object's writable command property from request parameters.
-    // VALIDATION: @Valid, @NotBlank, and @Size constrain shape; they do not make a shell command safe.
-    // SECURITY SINK: Validation does not prevent command metacharacters from reaching the process API.
-    Runtime.getRuntime().exec(input.getCommand()); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/8; Step 4/8
+    Runtime.getRuntime().exec(input.getCommand());
     return "command submitted";
   }
 
   public String modelAttributeWithoutAnnotations(PlainCommandPayload input) throws IOException {
-    // CONTROL: This object was not created by web binding, and this method is not a mapped callback.
     Runtime.getRuntime().exec(input.getCommand());
     return "command submitted";
   }
@@ -157,7 +141,7 @@ public class HttpAnnotationController {
     private String command;
 
     public String getCommand() {
-      return command; // Step 3/4; Step 3/8
+      return command;
     }
 
     public void setCommand(String command) {

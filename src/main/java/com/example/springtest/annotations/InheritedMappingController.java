@@ -15,10 +15,9 @@ interface InheritedMappingApi {
 public class InheritedMappingController implements InheritedMappingApi {
   @Override
   public String inherited(
-    @RequestParam String command // Step 1/11
+    @RequestParam String command
   ) throws IOException {
-    // SECURITY SINK: Spring uses the mapping declared on the implemented controller method.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/11
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 }

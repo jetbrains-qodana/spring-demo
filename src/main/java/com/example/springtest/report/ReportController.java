@@ -14,8 +14,8 @@ public class ReportController {
 
   @GetMapping("/examples/reports/count")
   public int count(
-    @RequestParam String customerName // Step 1/0
+    @RequestParam String customerName
   ) {
-    return reportService.countRows(customerName); // Step 2/0
+    return reportService.countRows(customerName);
   }
 }

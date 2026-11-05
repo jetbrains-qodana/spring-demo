@@ -8,23 +8,23 @@ public class AuthenticationSources {
   public void nameFromContext() throws IOException {
     var authentication = SecurityContextHolder.getContext().getAuthentication();
     var name = authentication.getName();
-    Runtime.getRuntime().exec(name); // Inspection: java-basic-command-injection, taint.CMDi
+    Runtime.getRuntime().exec(name);
   }
 
   public void principalFromContext() throws IOException {
     var authentication = SecurityContextHolder.getContext().getAuthentication();
     var principal = (String)authentication.getPrincipal();
-    Runtime.getRuntime().exec(principal); // Inspection: java-basic-command-injection, taint.CMDi
+    Runtime.getRuntime().exec(principal);
   }
 
   public void nameFromSubtype(ExtendedAuthentication authentication) throws IOException {
     var name = authentication.getName();
-    Runtime.getRuntime().exec(name); // Inspection: java-basic-command-injection, taint.CMDi
+    Runtime.getRuntime().exec(name);
   }
 
   public void principalFromSubtype(ExtendedAuthentication authentication) throws IOException {
     var principal = (String)authentication.getPrincipal();
-    Runtime.getRuntime().exec(principal); // Inspection: java-basic-command-injection, taint.CMDi
+    Runtime.getRuntime().exec(principal);
   }
 
   public void unrelated(Principal principal, Authentication authentication) throws IOException {

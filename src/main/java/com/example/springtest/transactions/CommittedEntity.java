@@ -11,8 +11,8 @@ public class CommittedEntity {
   private Long id;
   private String value;
 
-  public CommittedEntity(String value) { // Step 7/0
-    this.value = value; // Step 8/0
+  public CommittedEntity(String value) {
+    this.value = value;
   }
 
   public Long getId() {
@@ -20,6 +20,6 @@ public class CommittedEntity {
   }
 
   public String getValue() {
-    return value; // Step 15/0
+    return value;
   }
 }

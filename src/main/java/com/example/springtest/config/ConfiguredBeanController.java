@@ -17,15 +17,12 @@ public class ConfiguredBeanController {
 
   @GetMapping(value = "/examples/configured-bean", produces = MediaType.TEXT_HTML_VALUE)
   public String configuredBean(
-    // SOURCE: Spring obtains this value from the caller's query string.
-    @RequestParam String value // Step 1/0
+    @RequestParam String value
   ) {
-    // SECURITY SINK: The raw value returns as HTML after crossing configuration, bean, and lifecycle callbacks.
-    return renderer.render(value); // Inspection: java-basic-xss, taint.XSS; Step 2/0; Step 5/0
+    return renderer.render(value);
   }
 
   public String configuredBeanWithoutAnnotations(String value) {
-    // CONTROL: The same rendering path is not an HTML endpoint when the method has no mapping annotation.
     return plainRenderer.render(value);
   }
 }

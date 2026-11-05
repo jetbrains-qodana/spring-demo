@@ -20,8 +20,8 @@ class VariantEntity {
   private Long id;
   private String content;
 
-  VariantEntity(String content) { // Step 7/1
-    this.content = content; // Step 8/1
+  VariantEntity(String content) {
+    this.content = content;
   }
 
   Long getId() {
@@ -29,7 +29,7 @@ class VariantEntity {
   }
 
   String getContent() {
-    return content; // Step 18/1
+    return content;
   }
 }
 
@@ -44,7 +44,7 @@ class VariantRequest {
   private String text;
 
   String getContent() {
-    return text; // Step 5/1
+    return text;
   }
 }
 
@@ -58,18 +58,18 @@ class RepositoryVariantService {
     this.repository2 = repository2;
   }
 
-  Long persist(VariantRequest request) { // Step 3/1
-    Long id = repository1.save(new VariantEntity(request.getContent())).getId(); // Step 4/1; Step 6/1; Step 9/1
+  Long persist(VariantRequest request) {
+    Long id = repository1.save(new VariantEntity(request.getContent())).getId();
     repository1.save(new VariantEntity("safe"));
     repository1.save(new OtherVariantEntity("safe"));
     return id;
   }
 
   Optional<VariantEntity> loadContent(Long id) {
-    VariantRepository repository = repository1; // Step 12/1
-    VariantRepository alias = repository; // Step 13/1
-    VariantRepository selected = alias; // Step 14/1
-    return selected.findById(id); // Step 15/1
+    VariantRepository repository = repository1;
+    VariantRepository alias = repository;
+    VariantRepository selected = alias;
+    return selected.findById(id);
   }
 
   VariantEntity loadFromOtherRepository(Long id) {
@@ -92,30 +92,27 @@ public class RepositoryVariantController {
 
   @PostMapping("/examples/repository-variants")
   public ResponseEntity<Long> create(
-    @RequestBody VariantRequest request // Step 1/1
+    @RequestBody VariantRequest request
   ) {
-    return ResponseEntity.ok(service.persist(request)); // Step 2/1; Step 10/1
+    return ResponseEntity.ok(service.persist(request));
   }
 
   @GetMapping(value = "/examples/repository-variants/{id}", produces = MediaType.TEXT_HTML_VALUE)
   public ResponseEntity<String> content(@PathVariable Long id) {
-    VariantEntity entity = service.loadContent(id).orElseThrow(); // Step 11/1; Step 16/1
-    String content = entity.getContent(); // Step 17/1; Step 19/1
-    // SECURITY SINK: A later request reads content through service methods with common alternative names.
-    return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content); // Inspection: java-basic-xss, taint.XSS; Step 20/1
+    VariantEntity entity = service.loadContent(id).orElseThrow();
+    String content = entity.getContent();
+    return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content);
   }
 
   @GetMapping(value = "/examples/repository-variants/{id}/other", produces = MediaType.TEXT_HTML_VALUE)
   public ResponseEntity<String> contentFromOtherRepository(@PathVariable Long id) {
     String content = service.loadFromOtherRepository(id).getContent();
-    // SAFE RESPONSE: The request write used repository1, but this read uses repository2.
     return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content);
   }
 
   @GetMapping(value = "/examples/repository-variants/{id}/unrelated", produces = MediaType.TEXT_HTML_VALUE)
   public ResponseEntity<String> unrelatedContent(@PathVariable Long id) {
     String content = service.loadUnrelated(id).getContent();
-    // SAFE RESPONSE: The service ignores the repository result and returns a new entity.
     return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content);
   }
 }

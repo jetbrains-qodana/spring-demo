@@ -11,8 +11,8 @@ public class RolledBackEntity {
   private Long id;
   private String value;
 
-  public RolledBackEntity(String value) { // Step 7/1
-    this.value = value; // Step 8/1
+  public RolledBackEntity(String value) {
+    this.value = value;
   }
 
   public Long getId() {
@@ -20,6 +20,6 @@ public class RolledBackEntity {
   }
 
   public String getValue() {
-    return value; // Step 15/1
+    return value;
   }
 }

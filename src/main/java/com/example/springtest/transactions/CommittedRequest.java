@@ -4,7 +4,7 @@ public class CommittedRequest {
   private String value;
 
   public String getValue() {
-    return value; // Step 5/0
+    return value;
   }
 
   public void setValue(String value) {

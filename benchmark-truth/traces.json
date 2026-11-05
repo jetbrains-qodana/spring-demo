@@ -1,0 +1,3137 @@
+{
+  "benchmark": "spring-demo",
+  "version": "1.0",
+  "description": "Full gold for spring-demo, extracted from the former inline source markers. gold.csv (one row per expected taint finding: rule,file,line of the sink) is what SABER scores via agent-score-report convert:benchmark-truth; this file additionally keeps each expected trace (Step n of trace id <package>/<m>), both rule ids per finding (OpenGrep java-basic-* and JvmTaintAnalysis taint.*), and the explanatory notes (SOURCE / SECURITY SINK / CONTROL / ...), each anchored to the code line it described. CONTROL and SAFE RESPONSE notes mark the intended negative cases. Line numbers refer to the commit in hash.txt.",
+  "findings": [
+    {
+      "id": "com/example/springtest/annotations/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+        "line": 37
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 33,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 35,
+          "code": "String decorated = commandDecorator.decorate(command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 69,
+          "code": "public String decorate(String command) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 70,
+          "code": "return command;"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 35,
+          "code": "String decorated = commandDecorator.decorate(command);"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 36,
+          "code": "String stored = commandRepository.storeAndLoad(decorated);"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 76,
+          "code": "public String storeAndLoad(String command) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 77,
+          "code": "return command;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 36,
+          "code": "String stored = commandRepository.storeAndLoad(decorated);"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+          "line": 37,
+          "code": "Runtime.getRuntime().exec(stored);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/10",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/ComposedAnnotationController.java",
+        "line": 31
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/ComposedAnnotationController.java",
+          "line": 29,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/ComposedAnnotationController.java",
+          "line": 31,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/1",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+        "line": 19
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+          "line": 17,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+          "line": 19,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/2",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 39
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 37,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 39,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/3",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 54
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 52,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 54,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/4",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 69
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 67,
+          "code": "@RequestBody CommandPayload input"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 69,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 144,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 69,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/5",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 84
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 82,
+          "code": "@RequestHeader(\"X-Command\") String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 84,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/6",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 99
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 97,
+          "code": "@CookieValue(\"command\") String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 99,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/7",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 114
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 112,
+          "code": "@PathVariable String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 114,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/8",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+        "line": 129
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 127,
+          "code": "@Valid @ModelAttribute(\"input\") CommandPayload input"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 129,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 144,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+          "line": 129,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/11",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/InheritedMappingController.java",
+        "line": 20
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/InheritedMappingController.java",
+          "line": 18,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/InheritedMappingController.java",
+          "line": 20,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/annotations/9",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+        "line": 19
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+          "line": 17,
+          "code": "@RequestParam String command"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+          "line": 19,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 27
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 25,
+          "code": "@Valid @ModelAttribute(\"input\") DangerousInput input"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 27,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 12,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 27,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/1",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 40
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 38,
+          "code": "@ModelAttribute(\"modelAttributeOnly\") DangerousInput input"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 40,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 12,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 40,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/2",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 55
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 53,
+          "code": "@Valid DangerousInput input"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 55,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 12,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 55,
+          "code": "Runtime.getRuntime().exec(input.getCommand());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/3",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 75
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 73,
+          "code": "public String boundObjectMethod(@RequestBody DangerousInput input) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 74,
+          "code": "String command = input.commandText();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 36,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 74,
+          "code": "String command = input.commandText();"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 75,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/4",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 82
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 80,
+          "code": "public String derivedGetter(@RequestBody DangerousInput input) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 81,
+          "code": "String command = input.getSummary();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 16,
+          "code": "return command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 81,
+          "code": "String command = input.getSummary();"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 82,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/binding/5",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+        "line": 89
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 87,
+          "code": "public String overloadedGetter(@RequestBody DangerousInput input) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 88,
+          "code": "String command = input.getCommand(\"run \");"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+          "line": 28,
+          "code": "return prefix + command;"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 88,
+          "code": "String command = input.getCommand(\"run \");"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+          "line": 89,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/config/1",
+      "rules": [
+        "java-basic-expression-injection",
+        "taint.TemplateInjection"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+        "line": 22
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+          "line": 21,
+          "code": "public void setExpression(String value) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+          "line": 22,
+          "code": "expression = new SpelExpressionParser().parseExpression(value);"
+        }
+      ],
+      "category": "TemplateInjection"
+    },
+    {
+      "id": "com/example/springtest/config/2",
+      "rules": [
+        "java-basic-expression-injection",
+        "taint.TemplateInjection"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+        "line": 35
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+          "line": 34,
+          "code": "public void setExpression(String value) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/config/ConfigurationPropertiesSource.java",
+          "line": 35,
+          "code": "expression = new SpelExpressionParser().parseExpression(value);"
+        }
+      ],
+      "category": "TemplateInjection"
+    },
+    {
+      "id": "com/example/springtest/config/0",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+        "line": 22
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+          "line": 20,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+          "line": 22,
+          "code": "return renderer.render(value);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/config/LifecyclePageRenderer.java",
+          "line": 18,
+          "code": "public String render(String value) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/config/LifecyclePageRenderer.java",
+          "line": 19,
+          "code": "return prefix + value + \"</body></html>\";"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+          "line": 22,
+          "code": "return renderer.render(value);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/di/0",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+        "line": 21
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+          "line": 19,
+          "code": "@RequestParam String message"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+          "line": 21,
+          "code": "return pageService.render(message);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/di/HtmlPageService.java",
+          "line": 7,
+          "code": "public String render(String value) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/di/HtmlPageService.java",
+          "line": 8,
+          "code": "return \"<html><body>Service result: \" + value + \"</body></html>\";"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+          "line": 21,
+          "code": "return pageService.render(message);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/di/1",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+        "line": 20
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+          "line": 18,
+          "code": "@RequestParam String message"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+          "line": 20,
+          "code": "return pageService.render(message);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/di/HtmlPageService.java",
+          "line": 7,
+          "code": "public String render(String value) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/di/HtmlPageService.java",
+          "line": 8,
+          "code": "return \"<html><body>Service result: \" + value + \"</body></html>\";"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+          "line": 20,
+          "code": "return pageService.render(message);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/messaging/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 123
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 68,
+          "code": "public void publishEvent(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 69,
+          "code": "publisher.publishEvent(new CommandEvent(command));"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 122,
+          "code": "public void consumeEvent(CommandEvent event) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 123,
+          "code": "Runtime.getRuntime().exec(event.command());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/1",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 142
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 141,
+          "code": "public void consumeKafka(String command) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 142,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/6",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 142
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 88,
+          "code": "public void publishKafka(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 89,
+          "code": "kafkaTemplate.send(\"commands\", command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 141,
+          "code": "public void consumeKafka(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 142,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/9",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 142
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 93,
+          "code": "public void publishKafkaDefault(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 94,
+          "code": "kafkaTemplate.send(command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 141,
+          "code": "public void consumeKafka(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 142,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/10",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 147
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 93,
+          "code": "public void publishKafkaDefault(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 94,
+          "code": "kafkaTemplate.send(command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 146,
+          "code": "public void consumeAnyKafka(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 147,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/7",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 147
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 88,
+          "code": "public void publishKafka(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 89,
+          "code": "kafkaTemplate.send(\"commands\", command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 146,
+          "code": "public void consumeAnyKafka(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 147,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/8",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 147
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 146,
+          "code": "public void consumeAnyKafka(String command) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 147,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/2",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 160
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 159,
+          "code": "public void consumeRabbit(String command) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 160,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/4",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 160
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 73,
+          "code": "public void publishRabbit(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 74,
+          "code": "rabbitTemplate.send(\"commands\", command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 159,
+          "code": "public void consumeRabbit(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 160,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/3",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 165
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 164,
+          "code": "public void consumeJms(String command) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 165,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/messaging/5",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+        "line": 165
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 78,
+          "code": "public void publishJms(@RequestParam String command) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 79,
+          "code": "jmsTemplate.convertAndSend(\"commands\", command);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 164,
+          "code": "public void consumeJms(String command) throws IOException {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+          "line": 165,
+          "code": "Runtime.getRuntime().exec(command);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/persistence/1",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+        "line": 104
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 95,
+          "code": "@RequestBody VariantRequest request"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 97,
+          "code": "return ResponseEntity.ok(service.persist(request));"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 61,
+          "code": "Long persist(VariantRequest request) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 62,
+          "code": "Long id = repository1.save(new VariantEntity(request.getContent())).getId();"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 47,
+          "code": "return text;"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 62,
+          "code": "Long id = repository1.save(new VariantEntity(request.getContent())).getId();"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 23,
+          "code": "VariantEntity(String content) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 24,
+          "code": "this.content = content;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 62,
+          "code": "Long id = repository1.save(new VariantEntity(request.getContent())).getId();"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 97,
+          "code": "return ResponseEntity.ok(service.persist(request));"
+        },
+        {
+          "n": 11,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 102,
+          "code": "VariantEntity entity = service.loadContent(id).orElseThrow();"
+        },
+        {
+          "n": 12,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 69,
+          "code": "VariantRepository repository = repository1;"
+        },
+        {
+          "n": 13,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 70,
+          "code": "VariantRepository alias = repository;"
+        },
+        {
+          "n": 14,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 71,
+          "code": "VariantRepository selected = alias;"
+        },
+        {
+          "n": 15,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 72,
+          "code": "return selected.findById(id);"
+        },
+        {
+          "n": 16,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 102,
+          "code": "VariantEntity entity = service.loadContent(id).orElseThrow();"
+        },
+        {
+          "n": 17,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 103,
+          "code": "String content = entity.getContent();"
+        },
+        {
+          "n": 18,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 32,
+          "code": "return content;"
+        },
+        {
+          "n": 19,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 103,
+          "code": "String content = entity.getContent();"
+        },
+        {
+          "n": 20,
+          "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+          "line": 104,
+          "code": "return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/persistence/0",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+        "line": 36
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 23,
+          "code": "@RequestBody MessageRequest request"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 25,
+          "code": "return ResponseEntity.ok(messageService.save(request));"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 13,
+          "code": "public Long save(MessageRequest request) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 14,
+          "code": "MessageEntity entity = new MessageEntity(request.getContent(), request.getAuthor());"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/persistence/MessageRequest.java",
+          "line": 8,
+          "code": "return content;"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 14,
+          "code": "MessageEntity entity = new MessageEntity(request.getContent(), request.getAuthor());"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+          "line": 20,
+          "code": "public MessageEntity(String content, String author) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+          "line": 21,
+          "code": "this.content = content;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 14,
+          "code": "MessageEntity entity = new MessageEntity(request.getContent(), request.getAuthor());"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 18,
+          "code": "return selected.save(entity).getId();"
+        },
+        {
+          "n": 11,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 17,
+          "code": "MessageRepository selected = alias;"
+        },
+        {
+          "n": 12,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 16,
+          "code": "MessageRepository alias = loaded;"
+        },
+        {
+          "n": 13,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 15,
+          "code": "MessageRepository loaded = repository;"
+        },
+        {
+          "n": 14,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 25,
+          "code": "return ResponseEntity.ok(messageService.save(request));"
+        },
+        {
+          "n": 15,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 34,
+          "code": "MessageEntity message = messageService.find(id);"
+        },
+        {
+          "n": 16,
+          "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+          "line": 22,
+          "code": "return repository.findById(id).orElseThrow();"
+        },
+        {
+          "n": 17,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 34,
+          "code": "MessageEntity message = messageService.find(id);"
+        },
+        {
+          "n": 18,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 35,
+          "code": "String content = message.getContent();"
+        },
+        {
+          "n": 19,
+          "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+          "line": 30,
+          "code": "return content;"
+        },
+        {
+          "n": 20,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 35,
+          "code": "String content = message.getContent();"
+        },
+        {
+          "n": 21,
+          "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+          "line": 36,
+          "code": "return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(content);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/reactive/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 18
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 16,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 18,
+          "code": "Runtime.getRuntime().exec(value);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/reactive/1",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 31
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 29,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 31,
+          "code": "Runtime.getRuntime().exec(value);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/reactive/2",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 45
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 42,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 44,
+          "code": "String payload = Mono.just(value).block();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 45,
+          "code": "Runtime.getRuntime().exec(payload);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/reactive/4",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 46
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 42,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 44,
+          "code": "String payload = Mono.just(value).block();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 46,
+          "code": "return Mono.just(payload);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/reactive/3",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 54
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 51,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 53,
+          "code": "String payload = Flux.just(value).next().block();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 54,
+          "code": "Runtime.getRuntime().exec(payload);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/reactive/5",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+        "line": 55
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 51,
+          "code": "@RequestParam String value"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 53,
+          "code": "String payload = Flux.just(value).next().block();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+          "line": 55,
+          "code": "return Flux.just(payload);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/reactive/shortName/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/reactive/shortName/ShortReactiveController.java",
+        "line": 14
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/reactive/shortName/ShortReactiveController.java",
+          "line": 12,
+          "code": "public String run(@RequestParam String command) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/reactive/shortName/ShortReactiveController.java",
+          "line": 13,
+          "code": "String payload = Mono.just(command).block();"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/reactive/shortName/ShortReactiveController.java",
+          "line": 14,
+          "code": "Runtime.getRuntime().exec(payload);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/report/0",
+      "rules": [
+        "java-basic-sql-injection",
+        "taint.SQLi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/report/ReportRepository.java",
+        "line": 15
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/report/ReportController.java",
+          "line": 17,
+          "code": "@RequestParam String customerName"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/report/ReportController.java",
+          "line": 19,
+          "code": "return reportService.countRows(customerName);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 15,
+          "code": "public int countRows(String customerName) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 16,
+          "code": "ReportFilter filter = createFilter(customerName);"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 21,
+          "code": "private ReportFilter createFilter(String customerName) {"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 22,
+          "code": "return new ReportFilter(customerName);"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/report/ReportFilter.java",
+          "line": 6,
+          "code": "public ReportFilter(String customerName) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/report/ReportFilter.java",
+          "line": 7,
+          "code": "this.customerName = customerName;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 22,
+          "code": "return new ReportFilter(customerName);"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 16,
+          "code": "ReportFilter filter = createFilter(customerName);"
+        },
+        {
+          "n": 11,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 17,
+          "code": "ReportQuery query = queryFactory.create(filter);"
+        },
+        {
+          "n": 12,
+          "file": "src/main/java/com/example/springtest/report/ReportQueryFactory.java",
+          "line": 7,
+          "code": "public ReportQuery create(ReportFilter filter) {"
+        },
+        {
+          "n": 13,
+          "file": "src/main/java/com/example/springtest/report/ReportQueryFactory.java",
+          "line": 8,
+          "code": "String sql = \"SELECT * FROM reports WHERE customer_name = '\" + filter.getCustomerName() + \"'\";"
+        },
+        {
+          "n": 14,
+          "file": "src/main/java/com/example/springtest/report/ReportFilter.java",
+          "line": 11,
+          "code": "return customerName;"
+        },
+        {
+          "n": 15,
+          "file": "src/main/java/com/example/springtest/report/ReportQueryFactory.java",
+          "line": 8,
+          "code": "String sql = \"SELECT * FROM reports WHERE customer_name = '\" + filter.getCustomerName() + \"'\";"
+        },
+        {
+          "n": 16,
+          "file": "src/main/java/com/example/springtest/report/ReportQueryFactory.java",
+          "line": 9,
+          "code": "return new ReportQuery(sql);"
+        },
+        {
+          "n": 17,
+          "file": "src/main/java/com/example/springtest/report/ReportQuery.java",
+          "line": 6,
+          "code": "public ReportQuery(String sql) {"
+        },
+        {
+          "n": 18,
+          "file": "src/main/java/com/example/springtest/report/ReportQuery.java",
+          "line": 7,
+          "code": "this.sql = sql;"
+        },
+        {
+          "n": 19,
+          "file": "src/main/java/com/example/springtest/report/ReportQueryFactory.java",
+          "line": 9,
+          "code": "return new ReportQuery(sql);"
+        },
+        {
+          "n": 20,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 17,
+          "code": "ReportQuery query = queryFactory.create(filter);"
+        },
+        {
+          "n": 21,
+          "file": "src/main/java/com/example/springtest/report/ReportService.java",
+          "line": 18,
+          "code": "return reportRepository.count(query);"
+        },
+        {
+          "n": 22,
+          "file": "src/main/java/com/example/springtest/report/ReportRepository.java",
+          "line": 14,
+          "code": "public int count(ReportQuery query) {"
+        },
+        {
+          "n": 23,
+          "file": "src/main/java/com/example/springtest/report/ReportRepository.java",
+          "line": 15,
+          "code": "jdbcTemplate.queryForObject(query.getSql(), Integer.class);"
+        },
+        {
+          "n": 24,
+          "file": "src/main/java/com/example/springtest/report/ReportQuery.java",
+          "line": 11,
+          "code": "return sql;"
+        },
+        {
+          "n": 25,
+          "file": "src/main/java/com/example/springtest/report/ReportRepository.java",
+          "line": 15,
+          "code": "jdbcTemplate.queryForObject(query.getSql(), Integer.class);"
+        }
+      ],
+      "category": "SQLi"
+    },
+    {
+      "id": "com/example/springtest/security/sink@AuthenticationSources.java:11",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+        "line": 11
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+          "line": 11,
+          "code": "Runtime.getRuntime().exec(name);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/sink@AuthenticationSources.java:17",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+        "line": 17
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+          "line": 17,
+          "code": "Runtime.getRuntime().exec(principal);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/sink@AuthenticationSources.java:22",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+        "line": 22
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+          "line": 22,
+          "code": "Runtime.getRuntime().exec(name);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/sink@AuthenticationSources.java:27",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+        "line": 27
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/AuthenticationSources.java",
+          "line": 27,
+          "code": "Runtime.getRuntime().exec(principal);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/0",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+        "line": 19
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+          "line": 18,
+          "code": "public String runAsPrincipal(@AuthenticationPrincipal UserDetails principal) throws IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+          "line": 19,
+          "code": "Runtime.getRuntime().exec(principal.getUsername());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/1",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+        "line": 27
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+          "line": 27,
+          "code": "Runtime.getRuntime().exec(authentication.getName());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/security/2",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+        "line": 45
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+          "line": 42,
+          "code": "@AuthenticationPrincipal Authentication authentication"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/security/SecurityPrincipalController.java",
+          "line": 45,
+          "code": "Runtime.getRuntime().exec(authentication.getName());"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/sinks/0",
+      "rules": [
+        "java-basic-sql-injection",
+        "taint.SQLi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+        "line": 27
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 25,
+          "code": "@RequestParam String title"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 27,
+          "code": "jdbcTemplate.queryForObject(\"SELECT * FROM messages WHERE title = '\" + title + \"'\", Integer.class);"
+        }
+      ],
+      "category": "SQLi"
+    },
+    {
+      "id": "com/example/springtest/sinks/1",
+      "rules": [
+        "java-basic-expression-injection",
+        "taint.TemplateInjection"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+        "line": 41
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 38,
+          "code": "@RequestParam String expression"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 41,
+          "code": "return parser.parseExpression(expression).getValue();"
+        }
+      ],
+      "category": "TemplateInjection"
+    },
+    {
+      "id": "com/example/springtest/sinks/2",
+      "rules": [
+        "java-basic-open-redirect",
+        "taint.OpenRedirect"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+        "line": 53
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 51,
+          "code": "@RequestParam String target"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 53,
+          "code": "return new RedirectView(target);"
+        }
+      ],
+      "category": "OpenRedirect"
+    },
+    {
+      "id": "com/example/springtest/sinks/3",
+      "rules": [
+        "java-basic-path-traversal",
+        "taint.PathTraversal"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+        "line": 64
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 62,
+          "code": "@PathVariable String fileName"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+          "line": 64,
+          "code": "try (FileInputStream input = new FileInputStream(fileName)) {"
+        }
+      ],
+      "category": "PathTraversal"
+    },
+    {
+      "id": "com/example/springtest/transactions/0",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+        "line": 38
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 25,
+          "code": "public ResponseEntity<Long> commit(@RequestBody CommittedRequest request) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 26,
+          "code": "return ResponseEntity.ok(service.saveCommitted(request));"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 58,
+          "code": "public Long saveCommitted(CommittedRequest request) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 59,
+          "code": "CommittedEntity entity = new CommittedEntity(request.getValue());"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/transactions/CommittedRequest.java",
+          "line": 7,
+          "code": "return value;"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 59,
+          "code": "CommittedEntity entity = new CommittedEntity(request.getValue());"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/transactions/CommittedEntity.java",
+          "line": 14,
+          "code": "public CommittedEntity(String value) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/transactions/CommittedEntity.java",
+          "line": 15,
+          "code": "this.value = value;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 59,
+          "code": "CommittedEntity entity = new CommittedEntity(request.getValue());"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 60,
+          "code": "CommittedEntity saved = committedRepository.save(entity);"
+        },
+        {
+          "n": 11,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 26,
+          "code": "return ResponseEntity.ok(service.saveCommitted(request));"
+        },
+        {
+          "n": 12,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 36,
+          "code": "String value = service.findCommitted(id).getValue();"
+        },
+        {
+          "n": 13,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 73,
+          "code": "return committedRepository.findById(id).orElseThrow();"
+        },
+        {
+          "n": 14,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 36,
+          "code": "String value = service.findCommitted(id).getValue();"
+        },
+        {
+          "n": 15,
+          "file": "src/main/java/com/example/springtest/transactions/CommittedEntity.java",
+          "line": 23,
+          "code": "return value;"
+        },
+        {
+          "n": 16,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 36,
+          "code": "String value = service.findCommitted(id).getValue();"
+        },
+        {
+          "n": 17,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 38,
+          "code": ".body(value);"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/transactions/1",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+        "line": 43
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 30,
+          "code": "public ResponseEntity<Long> rollback(@RequestBody RolledBackRequest request) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 31,
+          "code": "return ResponseEntity.ok(service.saveRolledBack(request));"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 66,
+          "code": "public Long saveRolledBack(RolledBackRequest request) {"
+        },
+        {
+          "n": 4,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 67,
+          "code": "RolledBackEntity entity = new RolledBackEntity(request.getValue());"
+        },
+        {
+          "n": 5,
+          "file": "src/main/java/com/example/springtest/transactions/RolledBackRequest.java",
+          "line": 7,
+          "code": "return value;"
+        },
+        {
+          "n": 6,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 67,
+          "code": "RolledBackEntity entity = new RolledBackEntity(request.getValue());"
+        },
+        {
+          "n": 7,
+          "file": "src/main/java/com/example/springtest/transactions/RolledBackEntity.java",
+          "line": 14,
+          "code": "public RolledBackEntity(String value) {"
+        },
+        {
+          "n": 8,
+          "file": "src/main/java/com/example/springtest/transactions/RolledBackEntity.java",
+          "line": 15,
+          "code": "this.value = value;"
+        },
+        {
+          "n": 9,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 67,
+          "code": "RolledBackEntity entity = new RolledBackEntity(request.getValue());"
+        },
+        {
+          "n": 10,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 68,
+          "code": "rolledBackRepository.save(entity);"
+        },
+        {
+          "n": 11,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 31,
+          "code": "return ResponseEntity.ok(service.saveRolledBack(request));"
+        },
+        {
+          "n": 12,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 43,
+          "code": "return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(service.findRolledBack(id).getValue());"
+        },
+        {
+          "n": 13,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 77,
+          "code": "return rolledBackRepository.findById(id).orElseThrow();"
+        },
+        {
+          "n": 14,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 43,
+          "code": "return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(service.findRolledBack(id).getValue());"
+        },
+        {
+          "n": 15,
+          "file": "src/main/java/com/example/springtest/transactions/RolledBackEntity.java",
+          "line": 23,
+          "code": "return value;"
+        },
+        {
+          "n": 16,
+          "file": "src/main/java/com/example/springtest/transactions/TransactionController.java",
+          "line": 43,
+          "code": "return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(service.findRolledBack(id).getValue());"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/web/0",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/web/DirectController.java",
+        "line": 17
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 15,
+          "code": "@RequestParam String name"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 17,
+          "code": "return \"<html><body>Hello \" + name + \"</body></html>\";"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/web/3",
+      "rules": [
+        "java-basic-command-injection",
+        "taint.CMDi"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/web/DirectController.java",
+        "line": 27
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 25,
+          "code": "public String escapedHtml(@RequestParam String name) throws java.io.IOException {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 26,
+          "code": "String escaped = HtmlUtils.htmlEscape(name);"
+        },
+        {
+          "n": 3,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 27,
+          "code": "Runtime.getRuntime().exec(escaped);"
+        }
+      ],
+      "category": "CMDi"
+    },
+    {
+      "id": "com/example/springtest/web/1",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/web/DirectController.java",
+        "line": 44
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 42,
+          "code": "public String directVariable(@RequestParam String name) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 44,
+          "code": "return name;"
+        }
+      ],
+      "category": "XSS"
+    },
+    {
+      "id": "com/example/springtest/web/2",
+      "rules": [
+        "java-basic-xss",
+        "taint.XSS"
+      ],
+      "sink": {
+        "file": "src/main/java/com/example/springtest/web/DirectController.java",
+        "line": 50
+      },
+      "steps": [
+        {
+          "n": 1,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 48,
+          "code": "public ResponseEntity responseEntity(@RequestParam String name) {"
+        },
+        {
+          "n": 2,
+          "file": "src/main/java/com/example/springtest/web/DirectController.java",
+          "line": 50,
+          "code": "return builder.body(name);"
+        }
+      ],
+      "category": "XSS"
+    }
+  ],
+  "notes": [
+    {
+      "kind": "SOURCE",
+      "text": "An HTTP client controls the command query parameter.",
+      "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+      "line": 35
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Taint survives component selection, field injection, configuration, and repository calls.",
+      "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+      "line": 37
+    },
+    {
+      "kind": "CONTROL",
+      "text": "These plain objects and this ordinary method have the same Java data flow but no request entry point.",
+      "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+      "line": 44
+    },
+    {
+      "kind": "PROPAGATION",
+      "text": "A configuration prefix changes presentation but does not remove dangerous command syntax.",
+      "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+      "line": 63
+    },
+    {
+      "kind": "PROPAGATION",
+      "text": "Repository stereotypes indicate persistence responsibility, not input sanitization.",
+      "file": "src/main/java/com/example/springtest/annotations/BeanAnnotationController.java",
+      "line": 77
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Composed controller and mapping annotations expose this request parameter.",
+      "file": "src/main/java/com/example/springtest/annotations/ComposedAnnotationController.java",
+      "line": 31
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring reads command from the request query string.",
+      "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+      "line": 19
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The request value controls an operating-system process.",
+      "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+      "line": 19
+    },
+    {
+      "kind": "CONTROL",
+      "text": "With no Spring annotations, this identical body is never supplied with request data.",
+      "file": "src/main/java/com/example/springtest/annotations/ControllerAnnotationCase.java",
+      "line": 28
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Starting an operating-system process with request data permits command injection.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 39
+    },
+    {
+      "kind": "CONTROL",
+      "text": "No Spring annotation exposes this method or obtains its argument from an HTTP request.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 46
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The query parameter is controlled by the caller and becomes a process command.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 54
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This duplicate body has no framework entry point and therefore no request source.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 61
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Spring deserializes attacker-supplied JSON into input.command before this call.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 69
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The plain value object is supplied only by normal Java callers, not by Spring MVC.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 76
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Any HTTP client can set this header and select the process command.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 84
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The identical process call is not tainted because the method is not an HTTP handler.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 91
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Cookies are client-controlled request data and must not become process commands.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 99
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Without Spring annotations, command is merely an ordinary Java argument.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 106
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The caller chooses the route segment that is passed to the operating system.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 114
+    },
+    {
+      "kind": "CONTROL",
+      "text": "No router calls this method, even though its Java body intentionally matches the handler.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 121
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring populates the model object's writable command property from request parameters.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 129
+    },
+    {
+      "kind": "VALIDATION",
+      "text": "@Valid, @NotBlank, and @Size constrain shape; they do not make a shell command safe.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 129
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Validation does not prevent command metacharacters from reaching the process API.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 129
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This object was not created by web binding, and this method is not a mapped callback.",
+      "file": "src/main/java/com/example/springtest/annotations/HttpAnnotationController.java",
+      "line": 134
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Spring uses the mapping declared on the implemented controller method.",
+      "file": "src/main/java/com/example/springtest/annotations/InheritedMappingController.java",
+      "line": 20
+    },
+    {
+      "kind": "SOURCE",
+      "text": "The query parameter originates outside the application.",
+      "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+      "line": 19
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Passing it to exec allows the remote caller to influence process creation.",
+      "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+      "line": 19
+    },
+    {
+      "kind": "CONTROL",
+      "text": "With no Spring annotations, this identical body is not part of request dispatch.",
+      "file": "src/main/java/com/example/springtest/annotations/RestControllerAnnotationCase.java",
+      "line": 28
+    },
+    {
+      "kind": "SPRING LIFECYCLE",
+      "text": "A model-attribute producer runs before the mapped handler and supplies its form object.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 16
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Spring does not call an ordinary producer method during request binding.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 20
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring copies request form fields into this model object, so the remote caller controls command.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 25
+    },
+    {
+      "kind": "VALIDATION",
+      "text": "@Valid invokes the custom constraint validator, but validation does not escape shell syntax.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 25
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The bound command is passed to the operating system after validation.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 27
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This has the same Java body, but no HTTP mapping or model binding supplies untrusted data.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 32
+    },
+    {
+      "kind": "SOURCE",
+      "text": "A mapped handler makes Spring populate this model attribute from request form fields.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 40
+    },
+    {
+      "kind": "CONTROL",
+      "text": "@ModelAttribute alone does not expose an ordinary method as an HTTP handler.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 47
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring implicitly treats this complex handler parameter as a bound model attribute.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 55
+    },
+    {
+      "kind": "VALIDATION",
+      "text": "@Valid invokes validation but does not sanitize a value used as an operating-system command.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 55
+    },
+    {
+      "kind": "CONTROL",
+      "text": "@Valid requests validation; it does not make this ordinary method a request entry point.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 62
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A comparison result does not contain data from the bound request object.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 68
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The is-prefixed accessor reads a declared bound field without reaching a security sink.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 95
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The getter escapes the bound field before the HTML response.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 100
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The getter returns a constant, so the receiver does not taint its result.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 105
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Spring can bind a primitive field without creating a text sink.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 111
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Spring can bind a primitive parameter without creating a text sink.",
+      "file": "src/main/java/com/example/springtest/binding/BindingController.java",
+      "line": 116
+    },
+    {
+      "kind": "SOURCE PROPERTY",
+      "text": "Spring web binding writes the request's command field through setCommand.",
+      "file": "src/main/java/com/example/springtest/binding/DangerousInput.java",
+      "line": 7
+    },
+    {
+      "kind": "VALIDATION",
+      "text": "This checks only that a value exists; it neither escapes nor allowlists shell syntax.",
+      "file": "src/main/java/com/example/springtest/binding/ExecutesCommandValidator.java",
+      "line": 9
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this value from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+      "line": 20
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The raw value returns as HTML after crossing configuration, bean, and lifecycle callbacks.",
+      "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+      "line": 22
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The same rendering path is not an HTML endpoint when the method has no mapping annotation.",
+      "file": "src/main/java/com/example/springtest/config/ConfiguredBeanController.java",
+      "line": 26
+    },
+    {
+      "kind": "SPRING LIFECYCLE",
+      "text": "The container calls this after construction and dependency injection.",
+      "file": "src/main/java/com/example/springtest/config/LifecyclePageRenderer.java",
+      "line": 15
+    },
+    {
+      "kind": "PROPAGATION",
+      "text": "The request value is embedded unchanged in an HTML document.",
+      "file": "src/main/java/com/example/springtest/config/LifecyclePageRenderer.java",
+      "line": 19
+    },
+    {
+      "kind": "SPRING LIFECYCLE",
+      "text": "The container calls this factory and supplies the managed prefix provider by type.",
+      "file": "src/main/java/com/example/springtest/config/RendererConfiguration.java",
+      "line": 10
+    },
+    {
+      "kind": "SPRING LIFECYCLE",
+      "text": "A single constructor is used for dependency injection even without @Autowired.",
+      "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+      "line": 13
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this message from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+      "line": 19
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The unescaped value returns as HTML after crossing the injected service boundary.",
+      "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+      "line": 21
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Without a mapping annotation, this identical service call is not an HTTP response.",
+      "file": "src/main/java/com/example/springtest/di/ConstructorInjectedController.java",
+      "line": 25
+    },
+    {
+      "kind": "SPRING LIFECYCLE",
+      "text": "The container assigns the managed service instance before handling requests.",
+      "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+      "line": 11
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this message from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+      "line": 18
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The unescaped value returns as HTML through an injected dependency.",
+      "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+      "line": 20
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The plain field and unannotated method are never supplied with an HTTP request value.",
+      "file": "src/main/java/com/example/springtest/di/FieldInjectedController.java",
+      "line": 24
+    },
+    {
+      "kind": "PROPAGATION",
+      "text": "The request value crosses a service-call boundary and is returned unchanged.",
+      "file": "src/main/java/com/example/springtest/di/HtmlPageService.java",
+      "line": 8
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This destination has no listener.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 84
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A constant event reaches listeners by kind, but it carries no request taint.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 99
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The static helper returns a publisher, but the message payload is a safe constant.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 104
+    },
+    {
+      "kind": "CONTROL",
+      "text": "An ordinary publisher can use local aliases, but this value is not a request source.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 109
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Configuration does not publish the request value.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 116
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This event has the same short name but a different type.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 129
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A listener can react to an event without reading its payload.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 134
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A listener without a destination can observe each Kafka destination.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 138
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A listener can receive a payload and transport metadata without using either value.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 152
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A listener does not have to declare a payload parameter.",
+      "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
+      "line": 156
+    },
+    {
+      "kind": "PERSISTENCE ID",
+      "text": "JPA assigns this identifier when the entity is saved.",
+      "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+      "line": 10
+    },
+    {
+      "kind": "PROPAGATION",
+      "text": "Request content is intentionally stored unchanged for the vulnerable read endpoint.",
+      "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+      "line": 21
+    },
+    {
+      "kind": "SANITIZER",
+      "text": "Only the author field is HTML-escaped before persistence, making that field safe for HTML.",
+      "file": "src/main/java/com/example/springtest/persistence/MessageEntity.java",
+      "line": 22
+    },
+    {
+      "kind": "PERSISTENCE WRITE",
+      "text": "The repository preserves both fields beyond the lifetime of the POST request.",
+      "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+      "line": 18
+    },
+    {
+      "kind": "PERSISTENCE READ",
+      "text": "A later GET request can retrieve data that was supplied by an earlier caller.",
+      "file": "src/main/java/com/example/springtest/persistence/MessageService.java",
+      "line": 22
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "A later request reads content through service methods with common alternative names.",
+      "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+      "line": 104
+    },
+    {
+      "kind": "SAFE RESPONSE",
+      "text": "The request write used repository1, but this read uses repository2.",
+      "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+      "line": 110
+    },
+    {
+      "kind": "SAFE RESPONSE",
+      "text": "The service ignores the repository result and returns a new entity.",
+      "file": "src/main/java/com/example/springtest/persistence/RepositoryVariantController.java",
+      "line": 116
+    },
+    {
+      "kind": "SAFE RESPONSE",
+      "text": "The read does not use repository state from the earlier request.",
+      "file": "src/main/java/com/example/springtest/persistence/StaticServiceController.java",
+      "line": 51
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring deserializes attacker-controlled JSON into both fields of this request object.",
+      "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+      "line": 23
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This ordinary method is not called with an HTTP body.",
+      "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+      "line": 29
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Stored request content reaches an HTML response during a later controller invocation.",
+      "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+      "line": 36
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Without a mapping, the returned value is not written to an HTTP response.",
+      "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+      "line": 40
+    },
+    {
+      "kind": "SAFE RESPONSE",
+      "text": "The author field was HTML-escaped before storage, unlike the vulnerable content field.",
+      "file": "src/main/java/com/example/springtest/persistence/StoredMessageController.java",
+      "line": 47
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this value from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 16
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "A reactive return type does not make request data safe for process creation.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 18
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This ordinary method is not a reactive HTTP handler and has no request-derived argument.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 23
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this value from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 29
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The request value reaches process creation before the Flux response is returned.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 31
+    },
+    {
+      "kind": "CONTROL",
+      "text": "With no mapping or binding annotation, this duplicate body is not a request callback.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 36
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The Mono preserves the command taint of its input.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 45
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The Flux and Mono preserve the command taint of their input.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 54
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The model reads the reactive return type of a static call with a non-reactive owner.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 60
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The model reads the reactive return type of a virtual call on a non-reactive receiver.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 66
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A publisher without an input does not create a taint value.",
+      "file": "src/main/java/com/example/springtest/reactive/ReactiveController.java",
+      "line": 72
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains the title from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 25
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Concatenating request data into a JdbcTemplate query creates SQL injection.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 27
+    },
+    {
+      "kind": "CONTROL",
+      "text": "The same query construction has no request source when the method is not mapped.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 32
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains the expression text from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 38
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Parsing attacker-controlled Spring Expression Language can execute unintended operations.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 41
+    },
+    {
+      "kind": "CONTROL",
+      "text": "This identical parser call is not reached through Spring request dispatch.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 45
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains the redirect destination from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 51
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The application redirects to a caller-selected destination without an allowlist.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 53
+    },
+    {
+      "kind": "CONTROL",
+      "text": "Returning this object from an ordinary method does not create an HTTP redirect.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 57
+    },
+    {
+      "kind": "SOURCE",
+      "text": "The route segment is supplied by the remote caller and may contain an unsafe filename.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 62
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "The request path controls a filesystem read, enabling path traversal.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 64
+    },
+    {
+      "kind": "CONTROL",
+      "text": "No HTTP route supplies the filename to this duplicate filesystem call.",
+      "file": "src/main/java/com/example/springtest/sinks/SpringSinkController.java",
+      "line": 70
+    },
+    {
+      "kind": "SOURCE",
+      "text": "Spring obtains this name from the caller's query string.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 15
+    },
+    {
+      "kind": "SECURITY SINK",
+      "text": "Returning unescaped request text from an HTML endpoint is reflected XSS.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 17
+    },
+    {
+      "kind": "CONTROL",
+      "text": "An ordinary return value is not written to an HTTP response.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 21
+    },
+    {
+      "kind": "CONTROL",
+      "text": "HTML escaping removes the XSS taint before the response.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 28
+    },
+    {
+      "kind": "CONTROL",
+      "text": "OWASP Encoder HTML encoding removes the XSS taint before the response.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 33
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A comparison result does not contain the request value.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 38
+    },
+    {
+      "kind": "CONTROL",
+      "text": "A static helper does not write its argument to the HTTP response.",
+      "file": "src/main/java/com/example/springtest/web/DirectController.java",
+      "line": 55
+    }
+  ]
+}

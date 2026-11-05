@@ -26,10 +26,9 @@ import java.lang.annotation.Target;
 public class ComposedAnnotationController {
   @HtmlGet
   public String composed(
-    @RequestParam String command // Step 1/10
+    @RequestParam String command
   ) throws IOException {
-    // SECURITY SINK: Composed controller and mapping annotations expose this request parameter.
-    Runtime.getRuntime().exec(command); // Inspection: java-basic-command-injection, taint.CMDi; Step 2/10
+    Runtime.getRuntime().exec(command);
     return "command submitted";
   }
 }

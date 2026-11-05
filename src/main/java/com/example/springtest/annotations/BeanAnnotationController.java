@@ -30,20 +30,17 @@ public class BeanAnnotationController {
 
   @GetMapping("/examples/annotations/managed-beans")
   public String managedBeans(
-    @RequestParam String command // Step 1/0
+    @RequestParam String command
   ) throws IOException {
-    // SOURCE: An HTTP client controls the command query parameter.
-    String decorated = commandDecorator.decorate(command); // Step 2/0; Step 5/0
-    String stored = commandRepository.storeAndLoad(decorated); // Step 6/0; Step 9/0
-    // SECURITY SINK: Taint survives component selection, field injection, configuration, and repository calls.
-    Runtime.getRuntime().exec(stored); // Inspection: java-basic-command-injection, taint.CMDi; Step 10/0
+    String decorated = commandDecorator.decorate(command);
+    String stored = commandRepository.storeAndLoad(decorated);
+    Runtime.getRuntime().exec(stored);
     return "command submitted";
   }
 
   public String managedBeansWithoutAnnotations(
     String command
   ) throws IOException {
-    // CONTROL: These plain objects and this ordinary method have the same Java data flow but no request entry point.
     String decorated = plainCommandDecorator.decorate(command);
     String stored = plainCommandRepository.storeAndLoad(decorated);
     Runtime.getRuntime().exec(stored);
@@ -63,23 +60,21 @@ class AnnotatedCommandDecorator implements CommandDecorator {
 
   @Override
   public String decorate(String command) {
-    // PROPAGATION: A configuration prefix changes presentation but does not remove dangerous command syntax.
     return prefix + command;
   }
 }
 
 class PlainCommandDecorator implements CommandDecorator {
   @Override
-  public String decorate(String command) { // Step 3/0
-    return command; // Step 4/0
+  public String decorate(String command) {
+    return command;
   }
 }
 
 @Repository
 class AnnotatedCommandRepository {
-  public String storeAndLoad(String command) { // Step 7/0
-    // PROPAGATION: Repository stereotypes indicate persistence responsibility, not input sanitization.
-    return command; // Step 8/0
+  public String storeAndLoad(String command) {
+    return command;
   }
 }
 

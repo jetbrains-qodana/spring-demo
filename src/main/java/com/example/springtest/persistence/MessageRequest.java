@@ -5,7 +5,7 @@ public class MessageRequest {
   private String author;
 
   public String getContent() {
-    return content; // Step 5/0
+    return content;
   }
 
   public void setContent(String content) {

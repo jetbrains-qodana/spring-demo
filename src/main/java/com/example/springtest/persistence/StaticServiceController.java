@@ -48,7 +48,6 @@ public class StaticServiceController {
 
   @GetMapping(value = "/examples/static-service", produces = MediaType.TEXT_HTML_VALUE)
   public String read() {
-    // SAFE RESPONSE: The read does not use repository state from the earlier request.
     return new StaticEntity("stored").getValue();
   }
 }

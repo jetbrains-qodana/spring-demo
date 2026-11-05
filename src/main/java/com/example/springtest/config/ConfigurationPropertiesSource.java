@@ -18,8 +18,8 @@ class ConfigurationPropertiesSource {
 class BeanProperties {
   private Expression expression;
 
-  public void setExpression(String value) { // Step 1/1
-    expression = new SpelExpressionParser().parseExpression(value); // Inspection: java-basic-expression-injection, taint.TemplateInjection; Step 2/1
+  public void setExpression(String value) {
+    expression = new SpelExpressionParser().parseExpression(value);
   }
 
   Object evaluate() {
@@ -31,8 +31,8 @@ class BeanProperties {
 class ClassProperties {
   private Expression expression;
 
-  public void setExpression(String value) { // Step 1/2
-    expression = new SpelExpressionParser().parseExpression(value); // Inspection: java-basic-expression-injection, taint.TemplateInjection; Step 2/2
+  public void setExpression(String value) {
+    expression = new SpelExpressionParser().parseExpression(value);
   }
 
   Object evaluate() {
