@@ -1106,7 +1106,7 @@
           "n": 2,
           "file": "src/main/java/com/example/springtest/messaging/MessagingCallbacks.java",
           "line": 74,
-          "code": "rabbitTemplate.send(\"commands\", command);"
+          "code": "rabbitTemplate.convertAndSend(\"commands\", command);"
         },
         {
           "n": 3,

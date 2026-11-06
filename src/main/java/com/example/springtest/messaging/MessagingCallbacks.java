@@ -71,7 +71,7 @@ public class MessagingCallbacks {
 
   @GetMapping("/rabbit")
   public void publishRabbit(@RequestParam String command) {
-    rabbitTemplate.send("commands", command);
+    rabbitTemplate.convertAndSend("commands", command);
   }
 
   @GetMapping("/jms")
