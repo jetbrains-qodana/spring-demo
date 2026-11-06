@@ -1,0 +1,8 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="JvmTaintAnalysisHigh" />
+    <inspection_tool class="JvmTaintAnalysis" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="globalAnalysisDepth" value="HIGH" />
+    </inspection_tool>
+  </profile>
+</component>

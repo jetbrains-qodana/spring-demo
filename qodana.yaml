@@ -1,0 +1,10 @@
+version: "1.0"
+profile:
+  # JvmTaintAnalysis with globalAnalysisDepth = HIGH (the default is LOW). Several Spring
+  # flows in this project cross more beans than the LOW depth follows.
+  path: taint-high.xml
+# Run the taint analysis only: the profile file enables the default inspections as well.
+exclude:
+  - name: All
+include:
+  - name: JvmTaintAnalysis

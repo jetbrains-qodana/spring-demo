@@ -42,10 +42,31 @@ one package per Spring feature:
 In total, 61 findings are expected: 42 command injection, 12 XSS, 3 template injection,
 2 SQL injection, 1 open redirect, and 1 path traversal.
 
+## Configuration
+
+[`qodana.yaml`](qodana.yaml) runs the taint analysis only, using the inspection profile in
+[`taint-high.xml`](taint-high.xml). That profile sets the analysis depth to `HIGH`:
+
+```xml
+<inspection_tool class="JvmTaintAnalysis" enabled="true" level="WARNING" enabled_by_default="true">
+  <option name="globalAnalysisDepth" value="HIGH" />
+</inspection_tool>
+```
+
+The default depth is `LOW`. Two flows here pass through more beans than `LOW` follows, so
+it misses them:
+- the stored XSS in `persistence`;
+- the SQL injection in `report`.
+
+The project compiles against the real Spring and Reactor libraries from [`pom.xml`](pom.xml).
+The one exception is the `KafkaTemplate` stub in
+[`src/main/java/org/springframework/kafka/core`](src/main/java/org/springframework/kafka/core).
+It keeps a one-argument `send(value)` that the `/kafka-default` case uses for the default topic.
+
 ## Running the analysis
 
-Run the Qodana JVM linter with Docker from the project root, using the single-inspection
-taint analysis profile:
+Run the Qodana JVM linter with Docker from the project root. It picks up `qodana.yaml`
+automatically:
 
 ```bash
 docker run --rm -it \
@@ -54,7 +75,6 @@ docker run --rm -it \
     -v "$(pwd)":/data/project/ \
     -v "$(pwd)/.qodana/results":/data/results \
     jetbrains/qodana-jvm:latest \
-    --profile-name="qodana.single:JvmTaintAnalysis" \
     --show-report
 ```
 
