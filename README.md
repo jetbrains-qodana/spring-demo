@@ -44,13 +44,16 @@ In total, 61 findings are expected: 42 command injection, 12 XSS, 3 template inj
 
 ## Configuration
 
-[`qodana.yaml`](qodana.yaml) runs the taint analysis only, using the inspection profile in
-[`taint-high.xml`](taint-high.xml). That profile sets the analysis depth to `HIGH`:
+[`qodana.yaml`](qodana.yaml) runs the taint analysis only and sets its analysis depth to `HIGH`:
 
-```xml
-<inspection_tool class="JvmTaintAnalysis" enabled="true" level="WARNING" enabled_by_default="true">
-  <option name="globalAnalysisDepth" value="HIGH" />
-</inspection_tool>
+```yaml
+version: "1.0"
+profile:
+  name: qodana.single:JvmTaintAnalysis
+  inspections:
+    - inspection: JvmTaintAnalysis
+      options:
+        globalAnalysisDepth: HIGH
 ```
 
 The default depth is `LOW`. Two flows here pass through more beans than `LOW` follows, so
